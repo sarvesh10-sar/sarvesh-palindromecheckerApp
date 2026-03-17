@@ -7,10 +7,11 @@ public class Main {
         System.out.print("Enter a string: ");
         String str = sc.nextLine();
 
-        String rev = new StringBuilder(str).reverse().toString();
+        String lower = str.toLowerCase();
+        String rev = new StringBuilder(lower).reverse().toString();
 
-        if(str.equals(rev)) {
-            System.out.println("Palindrome");
+        if(lower.equals(rev)) {
+            System.out.println("Palindrome (case-insensitive)");
         } else {
             System.out.println("Not Palindrome");
         }
