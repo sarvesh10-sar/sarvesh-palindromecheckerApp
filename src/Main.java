@@ -1,5 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Welcome to Palindrome Checker Application");
+        String str = "madam";
+        String rev = new StringBuilder(str).reverse().toString();
+
+        if(str.equals(rev)) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
+        }
     }
 }
