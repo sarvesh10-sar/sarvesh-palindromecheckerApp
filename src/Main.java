@@ -7,12 +7,12 @@ public class Main {
         System.out.print("Enter a string: ");
         String str = sc.nextLine();
 
-        // UC5: Remove spaces + Case insensitive
-        String processed = str.replaceAll("\\s+", "").toLowerCase();
+        // UC6: Remove spaces + special characters + case insensitive
+        String processed = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         String reversed = new StringBuilder(processed).reverse().toString();
 
         if (processed.equals(reversed)) {
-            System.out.println("Palindrome (ignoring spaces & case)");
+            System.out.println("Palindrome (ignoring spaces, case, symbols)");
         } else {
             System.out.println("Not Palindrome");
         }
