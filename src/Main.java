@@ -1,20 +1,40 @@
 import java.util.Scanner;
 
 public class Main {
+
+    // Normalize string: remove spaces + symbols + convert to lowercase
+    public static String normalize(String s) {
+        return s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+    }
+
+    // Check palindrome after normalization
+    public static boolean isPalindromeUC10(String s) {
+        String normalized = normalize(s);
+
+        int left = 0;
+        int right = normalized.length() - 1;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
-        String str = sc.nextLine();
+        System.out.println("UC10: Case-Insensitive & Space-Ignored Palindrome Checker");
+        System.out.print("Enter text: ");
+        String text = sc.nextLine();
 
-        // UC6: Remove spaces + special characters + case insensitive
-        String processed = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        String reversed = new StringBuilder(processed).reverse().toString();
-
-        if (processed.equals(reversed)) {
-            System.out.println("Palindrome (ignoring spaces, case, symbols)");
+        if (isPalindromeUC10(text)) {
+            System.out.println("Result: YES, it is a palindrome (ignoring spaces & case)");
         } else {
-            System.out.println("Not Palindrome");
+            System.out.println("Result: NO, it is NOT a palindrome");
         }
     }
 }
