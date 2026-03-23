@@ -2,39 +2,39 @@ import java.util.Scanner;
 
 public class Main {
 
-    // Recursive function
-    public static boolean isPalindromeRecursive(String str, int start, int end) {
+    // Normalize string: remove spaces + symbols + convert to lowercase
+    public static String normalize(String s) {
+        return s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+    }
 
-        // Base condition
-        if (start >= end) {
-            return true;
+    // Check palindrome after normalization
+    public static boolean isPalindromeUC10(String s) {
+        String normalized = normalize(s);
+
+        int left = 0;
+        int right = normalized.length() - 1;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
         }
-
-        // If characters don't match
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return isPalindromeRecursive(str, start + 1, end - 1);
+        return true;
     }
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("UC9 - Recursive Palindrome Checker");
-        System.out.print("Enter a string: ");
+        System.out.println("UC10: Case-Insensitive & Space-Ignored Palindrome Checker");
+        System.out.print("Enter text: ");
+        String text = sc.nextLine();
 
-        String str = sc.nextLine();
-
-        // Call recursive function
-        if (isPalindromeRecursive(str, 0, str.length() - 1)) {
-            System.out.println(str + " is a Palindrome ✅");
+        if (isPalindromeUC10(text)) {
+            System.out.println("Result: YES, it is a palindrome (ignoring spaces & case)");
         } else {
-            System.out.println(str + " is NOT a Palindrome ❌");
+            System.out.println("Result: NO, it is NOT a palindrome");
         }
-
-        sc.close();
     }
 }
