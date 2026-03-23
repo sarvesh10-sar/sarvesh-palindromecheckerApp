@@ -1,20 +1,45 @@
 import java.util.Scanner;
 
+// UC11 - Object-Oriented Palindrome Service
+class PalindromeChecker {
+
+    // Encapsulated checkPalindrome() method
+    public boolean checkPalindrome(String str) {
+        str = str.replaceAll("\\s+", "").toLowerCase(); // normalization
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+
 public class Main {
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+        System.out.println("=== UC11: OOPS-Based Palindrome Checker ===");
 
         System.out.print("Enter a string: ");
-        String str = sc.nextLine();
+        String input = sc.nextLine();
 
-        // UC6: Remove spaces + special characters + case insensitive
-        String processed = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        String reversed = new StringBuilder(processed).reverse().toString();
+        // Using the PalindromeChecker object
+        PalindromeChecker checker = new PalindromeChecker();
 
-        if (processed.equals(reversed)) {
-            System.out.println("Palindrome (ignoring spaces, case, symbols)");
+        boolean result = checker.checkPalindrome(input);
+
+        if (result) {
+            System.out.println("Palindrome!");
         } else {
-            System.out.println("Not Palindrome");
+            System.out.println("Not a Palindrome.");
         }
     }
 }
