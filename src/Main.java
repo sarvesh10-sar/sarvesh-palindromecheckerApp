@@ -1,20 +1,40 @@
-import java.util.Scanner;
+// File: PalindromeChecker.java
+import java.util.Stack;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+public class PalindromeChecker {
 
-        System.out.print("Enter a string: ");
-        String str = sc.nextLine();
+    private String text; // Encapsulated property
 
-        // UC6: Remove spaces + special characters + case insensitive
-        String processed = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        String reversed = new StringBuilder(processed).reverse().toString();
+    // Constructor
+    public PalindromeChecker(String text) {
+        this.text = text;
+    }
 
-        if (processed.equals(reversed)) {
-            System.out.println("Palindrome (ignoring spaces, case, symbols)");
-        } else {
-            System.out.println("Not Palindrome");
+    // Method to check palindrome using Stack
+    public boolean checkPalindrome() {
+        Stack<Character> stack = new Stack<>();
+        int n = text.length();
+
+        // Push all characters into the stack
+        for (int i = 0; i < n; i++) {
+            stack.push(text.charAt(i));
         }
+
+        // Pop characters and compare with original
+        for (int i = 0; i < n; i++) {
+            if (text.charAt(i) != stack.pop()) {
+                return false; // Not a palindrome
+            }
+        }
+        return true; // Palindrome
+    }
+
+    // Optional setter/getter
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return this.text;
     }
 }
